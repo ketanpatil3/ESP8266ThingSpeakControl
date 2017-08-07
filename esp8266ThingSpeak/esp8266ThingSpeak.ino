@@ -28,127 +28,6 @@ const char* apiKeyThingSpeak = "";
 //field 4 = bottomLead
 //field 5 = motorRunDuration
 
-static const char PROGMEM INDEX_HTML[] = R"rawliteral(
-  <!DOCTYPE html>
-  <html>
-  <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ESP8266 WATERCONTROLLER</title>
-  </head>
-  <style media="screen" type="text/css">
-  html{font-family:sans-serif;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}body{margin:0}header{display:block}a{background-color:transparent}a:active,a:hover{outline:0}b{font-weight:700}button{margin:0;font:inherit;color:inherit}button{overflow:visible}button{text-transform:none}button{-webkit-appearance:button;cursor:pointer}button::-moz-focus-inner{padding:0;border:0}@media print{*,:after,:before{color:#000!important;text-shadow:none!important;background:0 0!important;-webkit-box-shadow:none!important;box-shadow:none!important}a,a:visited{text-decoration:underline}a[href]:after{content:" (" attr(href) ")"}p{orphans:3;widows:3}.navbar{display:none}}@font-face{font-family:'Glyphicons Halflings';src:url(../fonts/glyphico.eot);src:url(../fonts/glyphico.eot?#iefix) format('embedded-opentype'),url(../fonts/glyphico.woff2) format('woff2'),url(../fonts/glyphico.woff) format('woff'),url(../fonts/glyphico.ttf) format('truetype'),url(../fonts/glyphico.svg#glyphicons_halflingsregular) format('svg')}*{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}:after,:before{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}html{font-size:10px;-webkit-tap-highlight-color:rgba(0,0,0,0)}body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:14px;line-height:1.42857143;color:#333;background-color:#fff}button{font-family:inherit;font-size:inherit;line-height:inherit}a{color:#337ab7;text-decoration:none}a:focus,a:hover{color:#23527c;text-decoration:underline}a:focus{outline:thin dotted;outline:5px auto -webkit-focus-ring-color;outline-offset:-2px}p{margin:0 0 10px}.container{padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto}@media (min-width:768px){.container{width:750px}}@media (min-width:992px){.container{width:970px}}@media (min-width:1200px){.container{width:1170px}}.col-sm-1,.col-sm-2,.col-sm-4,.col-sm-6{position:relative;min-height:1px;padding-right:15px;padding-left:15px}@media (min-width:768px){.col-sm-1,.col-sm-2,.col-sm-4,.col-sm-6{float:left}.col-sm-6{width:50%}.col-sm-4{width:33.33333333%}.col-sm-2{width:16.66666667%}.col-sm-1{width:8.33333333%}.col-sm-offset-2{margin-left:16.66666667%}}label{display:inline-block;max-width:100%;margin-bottom:5px;font-weight:700}.form-group{margin-bottom:15px}.form-control-static{min-height:34px;padding-top:7px;padding-bottom:7px;margin-bottom:0}.form-horizontal .form-group{margin-right:-15px;margin-left:-15px}@media (min-width:768px){.form-horizontal .control-label{padding-top:7px;margin-bottom:0;text-align:right}}.btn{display:inline-block;padding:6px 12px;margin-bottom:0;font-size:14px;font-weight:400;line-height:1.42857143;text-align:center;white-space:nowrap;vertical-align:middle;-ms-touch-action:manipulation;touch-action:manipulation;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;background-image:none;border:1px solid transparent;border-radius:4px}.btn:active:focus,.btn:focus{outline:thin dotted;outline:5px auto -webkit-focus-ring-color;outline-offset:-2px}.btn:focus,.btn:hover{color:#333;text-decoration:none}.btn:active{background-image:none;outline:0;-webkit-box-shadow:inset 0 3px 5px rgba(0,0,0,.125);box-shadow:inset 0 3px 5px rgba(0,0,0,.125)}.btn-default{color:#333;background-color:#fff;border-color:#ccc}.btn-default:focus{color:#333;background-color:#e6e6e6;border-color:#8c8c8c}.btn-default:hover{color:#333;background-color:#e6e6e6;border-color:#adadad}.btn-default:active{color:#333;background-color:#e6e6e6;border-color:#adadad}.btn-default:active:focus,.btn-default:active:hover{color:#333;background-color:#d4d4d4;border-color:#8c8c8c}.btn-default:active{background-image:none}.btn-group{position:relative;display:inline-block;vertical-align:middle}.btn-group>.btn{position:relative;float:left}.btn-group>.btn:active,.btn-group>.btn:focus,.btn-group>.btn:hover{z-index:2}.btn-group .btn+.btn{margin-left:-1px}.btn-group>.btn:first-child{margin-left:0}.btn-group>.btn:first-child:not(:last-child):not(.dropdown-toggle){border-top-right-radius:0;border-bottom-right-radius:0}.btn-group>.btn:last-child:not(:first-child){border-top-left-radius:0;border-bottom-left-radius:0}.navbar{position:relative;min-height:50px;margin-bottom:20px;border:1px solid transparent}@media (min-width:768px){.navbar{border-radius:4px}}@media (min-width:768px){.navbar-header{float:left}}.container>.navbar-header{margin-right:-15px;margin-left:-15px}@media (min-width:768px){.container>.navbar-header{margin-right:0;margin-left:0}}.navbar-static-top{z-index:1000;border-width:0 0 1px}@media (min-width:768px){.navbar-static-top{border-radius:0}}.navbar-brand{float:left;height:50px;padding:15px 15px;font-size:18px;line-height:20px}.navbar-brand:focus,.navbar-brand:hover{text-decoration:none}@media (min-width:768px){.navbar>.container .navbar-brand{margin-left:-15px}}.navbar-default{background-color:#f8f8f8;border-color:#e7e7e7}.navbar-default .navbar-brand{color:#777}.navbar-default .navbar-brand:focus,.navbar-default .navbar-brand:hover{color:#5e5e5e;background-color:transparent}.container:after,.container:before,.form-horizontal .form-group:after,.form-horizontal .form-group:before,.navbar-header:after,.navbar-header:before,.navbar:after,.navbar:before{display:table;content:" "}.container:after,.form-horizontal .form-group:after,.navbar-header:after,.navbar:after{clear:both}@-ms-viewport{width:device-width}
-  .topnav {
-    background-color: #333;
-    overflow: hidden;
-  }
-  .topnav a {
-    float: left;
-    display: block;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-  }
-  .topnav a:hover {
-    background-color: #ddd;
-    color: black;
-  }
-  .topnav a.active {
-    background-color: #4CAF50;
-    color: white;
-  }
-  </style>
-  <script>
-  $(document).ready( function() {
-    getAll();
-  });
-  function setPower(value) {
-    $.post(urlBase + "power?value=" + value, function(data) {
-      updatePowerButtons(data);
-      $("#status").html("Set Power: " + data);
-    });
-  }
-  function updatePowerButtons(value) {
-    if(value == 0) {
-      $("#btnPowerOn").attr("class", "btn btn-default");
-      $("#btnPowerOff").attr("class", "btn btn-primary");
-    } else {
-      $("#btnPowerOn").attr("class", "btn btn-primary");
-      $("#btnPowerOff").attr("class", "btn btn-default");
-    }
-  }
-  $("#btnRefresh").click(function() {
-    getAll();
-  });
-  $("#btnPowerOn").click(function() {
-    setPower(1);
-  });
-
-  $("#btnPowerOff").click(function() {
-    setPower(0);
-  });
-  function getAll() {
-    var urlBase = window.location.hostname;
-    $.get(urlBase + "all", function(data) {
-      allData = data;
-
-      $("#status").html("Connecting...");
-      updatePowerButtons(data.power);
-      $("#status").html("Ready");
-    });
-  }
-  function setPower(value) {
-    $.post(urlBase + "power?value=" + value, function(data) {
-      updatePowerButtons(data);
-      $("#status").html("Set Power: " + data);
-    });
-  }
-
-  </script>
-  <body>
-  <header class="navbar navbar-default navbar-static-top" id="top" role="banner">
-  <div class="container">
-  <div class="navbar-header">
-  <a class="navbar-brand" href="/">ESP8266 WATERCONTROLLER</a>
-  </div>
-  </div>
-  </header>
-  <div class="container">
-  <form class="form-horizontal">
-  <div class="form-group">
-  <div class="col-sm-1 col-sm-offset-2">
-  <button type="button" class="btn btn-default">
-  <span id="btnRefresh"><b class>&#10226;</b></span>
-  </button>
-  </div>
-  <div class="col-sm-4">
-  <p id="status" class="form-control-static">Status</p>
-  </div>
-  </div>
-  <div class="form-group">
-  <label class="col-sm-2 control-label">Power</label>
-  <div class="col-sm-6">
-  <div class="btn-group" role="group" aria-label="Power">
-  <button type="button" class="btn btn-default" id="btnPowerOn">On</button>
-  <button type="button" class="btn btn-default" id="btnPowerOff">Off</button>
-  </div>
-  </div>
-  </div>
-  <div class="form-group">
-  <label for="inputBrightness" class="col-sm-2 control-label">Last Tank Filled Timestamp</label>
-  </div>
-  <div class="form-group">
-  <label for="inputBrightness" class="col-sm-2 control-label">Last Refresh</label>
-  </div>
-  </form>
-  </div>
-  </body>
-  </html>
-)rawliteral";
-
 WiFiClient client;
 byte buttonAction = 0;
 byte FirstTimeDisplay = 0, createStringCase = 0;
@@ -186,31 +65,7 @@ String getAllDate() {
   return sendStr;
 }
 
-void sendAll()
-{
-  String json = "{";
-  json += "\"power\":" + String(power);// + ",";
-  json += "\"payload\":" + getAllDate();
-  json += "}";
-  httpServer.send(200, "text/json", json);
-  json = String();
-}
-void handleRoot()
-{
-  httpServer.send_P(200, "text/html", INDEX_HTML);
-}
 
-
-void sendPower()
-{
-  String json = String(power);
-  httpServer.send(200, "text/json", json);
-  json = String();
-}
-void setPower(uint8_t value)
-{
-  power = value == 0 ? 0 : 1;
-}
 void addDate(unsigned long dateTime, byte onTimeMin) {
   byte pointer = EEPROM.read(0x00);
   byte DateMSB = EEPROM.read(0x01);
@@ -322,7 +177,6 @@ void reverse(char str[], int length)
   }
 }
 
-
 void checkLeads() {
   unsigned int i;
   static unsigned int j = 0, k = 0, l = 0, counter = 0;
@@ -372,16 +226,17 @@ void keyCheck() {
   static byte buttonDebounce = 0;
   int buttonCheckInternalMillis = 100;
   if (buttonAction == 0 && ((millis() - buttonActionTime) > buttonCheckInternalMillis)) {
-    if (digitalRead(12) == HIGH) {
+
+    if (digitalRead(14) == LOW) {   //Button 0
       // Make sure it is pressed for some time
       buttonDebounce++;
-      if( buttonDebounce > (buttonCheckInternalMillis*30)){
+      if( buttonDebounce > 30){
         buttonDebounce = 0;
         buttonAction = 1;
       }
-    } else if (digitalRead(13) == HIGH) {
+    } else if (digitalRead(15) == LOW) {    //Button 1
       buttonDebounce++;
-      if( buttonDebounce > (buttonCheckInternalMillis*30)){
+      if( buttonDebounce > 30){
         buttonDebounce = 0;
         buttonAction = 2;
       }
@@ -429,6 +284,10 @@ void updateThingSpeak(){
 					if (field5Val == "1" ){
 					//Start motor
 						relayON();
+						motorCommandReceived = 1;
+					}else if(field5Val == "2"){
+						//Stop motor
+						relayOff();
 						motorCommandReceived = 1;
 					}
 				 }
@@ -528,23 +387,7 @@ void setup(void) {
     #endif
   }
   MDNS.begin(host);
-
   httpUpdater.setup(&httpServer, update_path, update_username, update_password);
-  //Server related code
-  //httpServer.serveStatic("/", SPIFFS, "/index.html"); // ,"max-age=86400"
-  // httpServer.serveStatic("/index.html", SPIFFS, "/index.html");
-  httpServer.on("/", handleRoot);
-  httpServer.on("/all", HTTP_GET, []() {
-    sendAll();
-  });
-  httpServer.on("/power", HTTP_POST, []() {
-    String value = httpServer.arg("value");
-    setPower(value.toInt());
-    sendPower();
-  });
-  httpServer.on("/power", HTTP_GET, []() {
-    sendPower();
-  });
   //Server related code Should be before begin
   httpServer.begin();
 
@@ -578,8 +421,8 @@ void setup(void) {
   pinMode(12, INPUT); //TOP LEAD
   pinMode(10, INPUT); //BOTTOM LEAD
   pinMode(9, INPUT); // MOTOR LEAD
-  pinMode(0, INPUT); //BUTTON 0
-  pinMode(0, INPUT); // BUTTON 1
+  pinMode(15, INPUT); //BUTTON 1
+  pinMode(14, INPUT); // BUTTON 0  // For ON and OFF
 }
 void loop(void) {
   char bufferLCD1[16];
@@ -636,7 +479,6 @@ void loop(void) {
     Serial.println(bufferLCD1);
     #endif
   }
-
 
   //Second line LCD Display
   if (currentMillis - secondLineDisplay > 600) {
@@ -718,6 +560,6 @@ void loop(void) {
 		  createStringCase = 1;
 	  }
   }
-  //Send data to ting speak
+  //Send data to thing speak
 	  updateThingSpeak();
 }
