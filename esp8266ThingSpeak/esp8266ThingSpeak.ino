@@ -406,7 +406,7 @@ void updateThingSpeak(){
 		}
 		case 2:{  // fire a call to read relay command
 			//Get command status
-			//https://api.thingspeak.com/channels/311318/fields/5.json?api_key=3INANMRD24CAG09L&results=2
+			//https://api.thingspeak.com/channels/311318/fields/5.json?api_key=&results=2
 			client.print(String("GET /channels/311318/fields/5.json?api_key=") + String(apiKeyThingSpeak)+ "&results=2  HTTP/1.1\r\n" +
 					   "Host: " + String(ipThingSpeak) + "\r\n" +  "Connection: keep-alive\r\n\r\n");
 			clientState = 3;
