@@ -10,7 +10,10 @@ Hardware
  
  Developer
  Ketan Patil
- ketan.a.patil@gmail.com
+ ketan.a.patilATgmailDOTcom
  
- 
+ Helpful links
+ 1. https://vaasa.hacklab.fi/2017/01/18/esp8266-motion-sensor-arduinoide-thingspeak-iot-burglar-alarm/
+ 2. https://www.forward.com.au/pfod/ESP8266/GPIOpins/index.html
+ 3. https://github.com/amphancm/ESP8266ThingSpeakControl
 
