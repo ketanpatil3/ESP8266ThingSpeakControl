@@ -18,10 +18,10 @@ const char* host = "esp8266-webupdate";
 const char* update_path = "/firmware";
 const char* update_username = "admin";
 const char* update_password = "admin";
-const char* ssid = "";
-const char* password = "";
+const char* ssid = "neo";
+const char* password = "1122334455";
 const char* ipThingSpeak = "184.106.153.149";
-const char* apiKeyThingSpeak = "";
+const char* apiKeyThingSpeak = "YHPV3O2YUMWRVGG3";
 //field 1 = motorStatus
 //field 2 = motorLead
 //field 3 = topLead
@@ -320,10 +320,12 @@ void updateThingSpeak(){
 		case 5:{
 		if(client.available()){
 			clientState = 1;
+      client.stop();
 			} else{
 			//check for timeout to skip to case 4
 			if((millis()-timeOut) > 5000){
 				clientState = 1;
+        client.stop();
 				break;
 				}
 			}
